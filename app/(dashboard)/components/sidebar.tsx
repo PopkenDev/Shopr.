@@ -9,22 +9,23 @@ import UserProfile from "@/app/(dashboard)/components/user-profile";
 import Separator from "@/components/ui/separator";
 import { RiBox3Fill, RiDashboardFill } from "@remixicon/react";
 
+const navItems = [
+  {
+    label: "Dashboard",
+    href: "/",
+    active: "/",
+    icon: <RiDashboardFill className="h-5 w-5" />,
+  },
+  {
+    label: "Products",
+    href: "/products",
+    active: "/products",
+    icon: <RiBox3Fill className="h-5 w-5" />,
+  },
+];
+
 const Sidebar = () => {
   const pathname = usePathname();
-  const navItems = [
-    {
-      label: "Dashboard",
-      href: "/",
-      active: "/",
-      icon: <RiDashboardFill className="h-5 w-5" />,
-    },
-    {
-      label: "Products",
-      href: "/products",
-      active: "/products",
-      icon: <RiBox3Fill className="h-5 w-5" />,
-    },
-  ];
   const { isLoaded, isSignedIn, user } = useUser();
 
   if (!isLoaded) {
@@ -33,11 +34,8 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Sidemenu button */}
-      <aside className="flex items-end h-screen">
-        <div
-          className={`h-[calc(100svh-80px)] w-72 border-r border-teal-800 p-4 space-y-8`}
-        >
+      <aside className={`h-[calc(100svh-80px)] w-fit -translate-y-px`}>
+        <div className="h-full w-full border-r border-teal-800 p-4 space-y-8">
           <UserProfile user={user} />
           <Separator />
           <nav className="flex flex-col gap-y-4">

@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Sidebar from "./(dashboard)/components/sidebar";
 
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +23,10 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <Navbar />
           <div className="flex">
             <Sidebar />
-            {children}
+            <div className="p-8">{children}</div>
           </div>
         </body>
       </html>

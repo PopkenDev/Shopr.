@@ -7,7 +7,8 @@
     background: #121212;
   }
 
-  aside {
+  aside,
+  header {
     background: #222222;
   }
 }
