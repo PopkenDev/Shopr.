@@ -7,7 +7,7 @@ import { useUser } from "@clerk/nextjs";
 
 import UserProfile from "@/app/(dashboard)/components/user-profile";
 import Separator from "@/components/ui/separator";
-import { RiBox3Fill, RiDashboardFill } from "@remixicon/react";
+import { RiBookmarkFill, RiBox3Fill, RiDashboardFill } from "@remixicon/react";
 
 const navItems = [
   {
@@ -15,6 +15,12 @@ const navItems = [
     href: "/",
     active: "/",
     icon: <RiDashboardFill className="h-5 w-5" />,
+  },
+  {
+    label: "Categories",
+    href: "/categories",
+    active: "/categories",
+    icon: <RiBookmarkFill className="h-5 w-5" />,
   },
   {
     label: "Products",
@@ -29,13 +35,20 @@ const Sidebar = () => {
   const { isLoaded, isSignedIn, user } = useUser();
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    // TODO Create loading animation here
+    return (
+      <aside className="h-[calc(100svh-80px)] w-64 -translate-y-px light-shadow">
+        Loading...
+      </aside>
+    );
   }
 
   return (
     <>
-      <aside className={`h-[calc(100svh-80px)] w-fit -translate-y-px`}>
-        <div className="h-full w-full border-r border-teal-800 p-4 space-y-8">
+      <aside
+        className={`h-[calc(100svh-80px)] w-64 -translate-y-px light-shadow`}
+      >
+        <div className="h-full w-full p-4 space-y-8">
           <UserProfile user={user} />
           <Separator />
           <nav className="flex flex-col gap-y-4">

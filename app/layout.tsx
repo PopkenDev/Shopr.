@@ -26,7 +26,7 @@ export default async function RootLayout({
           <Navbar />
           <div className="flex">
             <Sidebar />
-            <div className="p-8">{children}</div>
+            <div className="p-8 w-[calc(100vw-256px)]">{children}</div>
           </div>
         </body>
       </html>
