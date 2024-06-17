@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
 import Sidebar from "@/components/sidebar";
 
 import "./globals.css";
-import { currentUser } from "@clerk/nextjs/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +21,14 @@ export default async function RootLayout({
 }>) {
   const user = await currentUser();
 
+  const userData = JSON.parse(JSON.stringify(user));
+
   return (
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
           <div className="flex">
-            <Sidebar userData={user} />
+            <Sidebar user={userData} />
             {children}
           </div>
         </body>
