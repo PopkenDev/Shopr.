@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs/server";
 
-import Sidebar from "@/components/sidebar";
+import Sidebar from "./(dashboard)/components/sidebar";
 
 import "./globals.css";
 
@@ -19,16 +18,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await currentUser();
-
-  const userData = JSON.parse(JSON.stringify(user));
-
   return (
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
           <div className="flex">
-            <Sidebar user={userData} />
+            <Sidebar />
             {children}
           </div>
         </body>

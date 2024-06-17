@@ -1,12 +1,7 @@
 import Image from "next/image";
 
 interface UserProfileProps {
-  user: {
-    firstName: string;
-    lastName: string;
-    imageUrl: string;
-    emailAddresses: Array<{ emailAddress: string }>;
-  };
+  user: any;
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
