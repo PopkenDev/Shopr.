@@ -4,58 +4,43 @@ import Button from "@/components/ui/button";
 import { RiDeleteBinFill, RiImageAddFill } from "@remixicon/react";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-interface ImageUploadProps {
-  disabled?: boolean;
-  onChange: (value: string) => void;
-  onRemove: (value: string) => void;
-  value: string[];
-}
-
-const ImageUpload: React.FC<ImageUploadProps> = ({
-  disabled,
-  onChange,
-  onRemove,
-  value,
-}) => {
-  const [isMounted, setIsMounted] = useState(false);
+const ImageUpload = () => {
   const [resource, setResource] = useState();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
+  const handleUpload = (result: any) => {
+    setResource(result.info.secure_url);
+  };
   console.log(resource);
 
   return (
     <div>
-      {resource == "undefined" && (
-        <Image src={resource} width={200} height={200} alt="Uploaded image" />
+      {resource && (
+        <Image
+          src={resource || ""}
+          width={200}
+          height={200}
+          alt="Upload image"
+          className="rounded-md mb-4"
+        />
       )}
-
       <CldUploadWidget
         uploadPreset="hcyfy51l"
-        onSuccess={(result, { widget }) => {
-          setResource(result?.info?.secure_url);
-          widget.close();
+        onSuccess={(result) => {
+          handleUpload(result);
         }}
       >
         {({ open }) => {
-          function handleOnClick() {
-            setResource(undefined);
-            open();
-          }
           return (
             <Button
-              onClick={handleOnClick}
               variant="default"
               size="sm"
               type="button"
+              onClick={() => open()}
             >
-              <RiImageAddFill />
+              <RiImageAddFill className="h-5 w-5" />
+              Upload an Image
             </Button>
           );
         }}

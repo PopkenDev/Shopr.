@@ -27,7 +27,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ initialData }) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     bannerLabel: "",
-    imageUrl: "",
+    // imageUrl: "",
   });
 
   const onSubmit = async (e: any) => {
@@ -35,7 +35,7 @@ const BannerForm: React.FC<BannerFormProps> = ({ initialData }) => {
 
     setFormData({
       bannerLabel: e.target.bannerLabel.value,
-      imageUrl: e.target.imageUrl.value,
+      // imageUrl: e.target.imageUrl.value,
     });
 
     try {
@@ -47,22 +47,13 @@ const BannerForm: React.FC<BannerFormProps> = ({ initialData }) => {
     }
   };
 
-  const handleChange = (url: string) => {
-    console.log(url);
-  };
-
   return (
     <form onSubmit={onSubmit} className="mt-8">
-      <div className="mb-8">
-        <FormLabel label="Banner image" name="imageUrl" />
-        <ImageUpload
-          value={[]}
-          disabled={loading}
-          onChange={(url) => handleChange(url)}
-          onRemove={() => ""}
-        />
-      </div>
       <div className="grid grid-cols-3 gap-8 mb-8">
+        <div className="mb-8">
+          <FormLabel label="Banner image" name="imageUrl" />
+          <ImageUpload />
+        </div>
         {bannerFormInputs.map((input) => (
           <div key={input.name} className="flex flex-col">
             <FormLabel label={input.label} name={input.name} />
