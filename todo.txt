@@ -1,0 +1,6 @@
+(x) Fix loading user profile in sidebar. (Make only the user information loading)
+() Create a dynamic button
+() Create add banner page (front-end)
+() Create add banner routes (back-end)
+() Add data-table to banners page
+(x) Create dynamic toast

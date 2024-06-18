@@ -18,7 +18,7 @@ const CategoriesClient = ({ data }: { data: any }) => {
           description="Here is an overview of all categories in the webshop"
         />
         <button
-          onClick={() => router.push("/categories/new")}
+          onClick={() => router.push("/banners/new")}
           className="text-white text-sm font-semibold bg-teal-800 h-fit py-2 px-4 rounded-md flex items-center gap-x-1"
         >
           Add new

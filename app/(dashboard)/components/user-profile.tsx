@@ -8,6 +8,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   return (
     <div className="flex flex-col items-center">
       <Image
+        priority
         src={user?.imageUrl}
         alt="User-image"
         height={200}
